@@ -1,0 +1,27 @@
+{
+  "name": "track-api",
+  "version": "1.0.0",
+  "description": "Keeping track of all the things you need to remember",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm run test",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanbenson/Track-Api.git"
+  },
+  "author": "Ryan Benson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryanbenson/Track-Api/issues"
+  },
+  "homepage": "https://github.com/ryanbenson/Track-Api#readme"
+}
