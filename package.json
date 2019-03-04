@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Keeping track of all the things you need to remember",
   "main": "server.js",
+  "engines": {
+    "node": "11.7.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
