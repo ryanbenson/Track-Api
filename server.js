@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const Task = require('./models/task');
 const Achievement = require('./models/achievement');
+const Link = require('./models/link');
 
 const app = express();
 app.use(bodyParser.json());
@@ -28,6 +29,11 @@ app.get('/achievements', async (req, res) => {
   res.json(achievements);
 });
 
+app.get('/links', async (req, res) => {
+  const links = await Link.find({});
+  res.json(links);
+});
+
 app.post('/tasks', async (req, res) => {
   const task = new Task(req.body);
   try{
@@ -44,6 +50,17 @@ app.post('/achievements', async (req, res) => {
   try{
     await achievement.save();
     return res.json({message: 'Achievement saved'});
+
+  } catch (err){
+    return res.status(400).json({message: 'Bad input', error: err});
+  }
+});
+
+app.post('/links', async (req, res) => {
+  const link = new Link(req.body);
+  try{
+    await link.save();
+    return res.json({message: 'Link saved'});
 
   } catch (err){
     return res.status(400).json({message: 'Bad input', error: err});
