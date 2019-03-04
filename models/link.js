@@ -4,6 +4,7 @@ const schema = new mongoose.Schema({
   link: String,
   tags: [String],
   read: Boolean,
+  read_at: Date,
 });
 const Link = mongoose.model("Link", schema);
 
