@@ -7,6 +7,7 @@ const cors = require("cors");
 const Task = require("./models/task");
 const Achievement = require("./models/achievement");
 const Link = require("./models/link");
+const Activity = require("./models/activity");
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,6 +35,11 @@ app.get("/achievements", async (req, res) => {
 app.get("/links", async (req, res) => {
   const links = await Link.find({});
   res.json(links);
+});
+
+app.get("/activities", async (req, res) => {
+  const activities = await Activity.find({});
+  res.json(activities);
 });
 
 app.post("/tasks", async (req, res) => {
@@ -66,6 +72,16 @@ app.post("/links", async (req, res) => {
   }
 });
 
+app.post("/activities", async (req, res) => {
+  const activity = new Activity(req.body);
+  try {
+    const newActivity = await activity.save();
+    return res.json({ message: "Activity saved", data: newActivity });
+  } catch (err) {
+    return res.status(400).json({ message: "Bad input", error: err });
+  }
+});
+
 app.put("/tasks", async (req, res) => {
   try {
     const updated = await Task.findByIdAndUpdate(req.body._id, req.body);
@@ -93,6 +109,15 @@ app.put("/links", async (req, res) => {
   }
 });
 
+app.put("/activities", async (req, res) => {
+  try {
+    const updated = await Activity.findByIdAndUpdate(req.body._id, req.body);
+    return res.json({ message: "Activity updated", data: updated });
+  } catch (err) {
+    return res.status(400).json({ message: "Bad input", error: err });
+  }
+});
+
 app.delete("/tasks", async (req, res) => {
   try {
     const deleted = await Task.findOneAndDelete(req.body._id);
@@ -115,6 +140,15 @@ app.delete("/links", async (req, res) => {
   try {
     const deleted = await Link.findOneAndDelete(req.body._id);
     return res.json({ message: "Link deleted", data: deleted });
+  } catch (err) {
+    return res.status(400).json({ message: "Bad input", error: err });
+  }
+});
+
+app.delete("/activities", async (req, res) => {
+  try {
+    const deleted = await Activity.findOneAndDelete(req.body._id);
+    return res.json({ message: "Activity deleted", data: deleted });
   } catch (err) {
     return res.status(400).json({ message: "Bad input", error: err });
   }
