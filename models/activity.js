@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   type: String,
   action: String,
   notes: String,
-  date: String,
+  date: Date,
 });
 const Activity = mongoose.model("Activity", schema);
 
